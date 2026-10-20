@@ -11,3 +11,7 @@ React uses the `key` to match each item in the new render with the item from the
 ## 3. Removing `onChange` from the controlled input (Strand 2)
 
 Without `onChange`, I could not type anything — the input stayed empty no matter what I pressed. Its `value` comes from `text` state, and nothing updated that state anymore, so React kept forcing the box back to `""` on every render. React also printed a console warning that I provided a `value` prop without an `onChange` handler, suggesting `readOnly` or `defaultValue` instead.
+
+## 4. The round trip of one "Add" click (Strand 3)
+
+`TaskBoard` owns the `tasks` state, and `NewTaskInput` is the component that asks for a change. `TaskBoard` passes its `handleAddTask` function down to `NewTaskInput` as the `onAddTask` prop; when I click Add, `NewTaskInput` calls `onAddTask(text)`, which actually runs `handleAddTask` inside `TaskBoard` and calls `setTasks` with a new array. That state change makes `TaskBoard` re-render, it passes the new `tasks` array down to `TaskList` as a prop, and `TaskList` renders one more `TaskCard` — the request went up through a callback and the new data came back down through props.
