@@ -59,3 +59,20 @@ button {
   background: #fff;
   cursor: pointer;
 }
+
+.task-card h3.done {
+  text-decoration: line-through;
+  color: #9ca3af;
+}
+
+.filter-bar {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.filter-bar button.active {
+  background: #1f2937;
+  border-color: #1f2937;
+  color: #fff;
+}

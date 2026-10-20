@@ -1,0 +1,30 @@
+export type Filter = "all" | "done" | "open";
+
+const filters: { value: Filter; label: string }[] = [
+  { value: "all", label: "All" },
+  { value: "done", label: "Done" },
+  { value: "open", label: "Open" },
+];
+
+type FilterBarProps = {
+  filter: Filter;
+  onFilterChange: (filter: Filter) => void;
+};
+
+function FilterBar({ filter, onFilterChange }: FilterBarProps) {
+  return (
+    <div className="filter-bar">
+      {filters.map(({ value, label }) => (
+        <button
+          key={value}
+          className={value === filter ? "active" : undefined}
+          onClick={() => onFilterChange(value)}
+        >
+          {label}
+        </button>
+      ))}
+    </div>
+  );
+}
+
+export default FilterBar;
