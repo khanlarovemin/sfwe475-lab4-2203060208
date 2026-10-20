@@ -5,12 +5,12 @@ function NewTaskInput({ onAddTask }: { onAddTask: (title: string) => void }) {
 
   function handleAdd() {
     if (text.trim() === "") return;
-    onAddTask(text.trim());
+    onAddTask(text);
     setText("");
   }
 
   return (
-    <div className="new-task">
+    <div>
       <input
         value={text}
         onChange={(e) => setText(e.target.value)}

@@ -13,11 +13,11 @@ type FilterBarProps = {
 
 function FilterBar({ filter, onFilterChange }: FilterBarProps) {
   return (
-    <div className="filter-bar">
+    <div>
       {filters.map(({ value, label }) => (
         <button
           key={value}
-          className={value === filter ? "active" : undefined}
+          style={{ fontWeight: value === filter ? "bold" : "normal" }}
           onClick={() => onFilterChange(value)}
         >
           {label}

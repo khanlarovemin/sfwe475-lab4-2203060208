@@ -8,8 +8,8 @@ type TaskCardProps = Pick<Task, "title" | "done" | "dueDate"> & {
 function TaskCard({ title, done, dueDate, onToggle }: TaskCardProps) {
   return (
     <div className="task-card">
+      <h3>{title}</h3>
       <TaskCheckbox done={done} onToggle={onToggle} />
-      <h3 className={done ? "done" : undefined}>{title}</h3>
       {dueDate && <p>Due: {dueDate}</p>}
     </div>
   );

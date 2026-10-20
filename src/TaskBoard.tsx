@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
-import { z } from "zod";
-import { TaskSchema, type Task } from "./schemas";
+import type { Task } from "./schemas";
 import TaskList from "./TaskList";
 import NewTaskInput from "./NewTaskInput";
 import FilterBar, { type Filter } from "./FilterBar";
@@ -16,8 +15,7 @@ function loadTasks(): Task[] {
   try {
     const saved = localStorage.getItem(STORAGE_KEY);
     if (saved === null) return defaultTasks;
-    const result = z.array(TaskSchema).safeParse(JSON.parse(saved));
-    return result.success ? result.data : defaultTasks;
+    return JSON.parse(saved);
   } catch {
     return defaultTasks;
   }
@@ -36,8 +34,7 @@ function TaskBoard() {
   }, [tasks]);
 
   function handleAddTask(title: string) {
-    const nextId = Math.max(0, ...tasks.map((task) => task.id)) + 1;
-    setTasks([...tasks, { id: nextId, title, done: false }]);
+    setTasks([...tasks, { id: tasks.length + 1, title, done: false }]);
   }
 
   function handleToggleTask(id: number) {
